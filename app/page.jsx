@@ -1,12 +1,15 @@
 import { Table } from "@/app/components/Table";
 import { Filters } from "@/app/components/Filters";
+import { unstable_noStore } from "next/cache";
 
 export default async function Home() {
-  const initialData = [
-    { name: "Serkan", balance: 21.75, createdAt: "21-01-2024" },
-    { name: "Mustafa", balance: 11.25, createdAt: "24-01-2024" },
-    { name: "Pelin", balance: 123.25, createdAt: "21-03-2024" },
-  ];
+  unstable_noStore();
+
+  let initialData = await fetch("http://localhost:3000/api/data", {
+    method: "POST",
+  });
+
+  initialData = await initialData.json();
 
   return (
     <main

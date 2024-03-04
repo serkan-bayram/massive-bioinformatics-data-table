@@ -4,10 +4,12 @@ import { TableHeading } from "./ui/TableHeading";
 
 export function Table({ initialData }) {
   // Table headings
+  // The order should match the initialData order
   const columns = [
     { name: "Username", id: "username", isSortable: false },
+    { name: "Age", id: "age", isSortable: true },
     { name: "Balance", id: "balance", isSortable: true },
-    { name: "Created At", id: "createdAt", isSortable: true },
+    { name: "Gender", id: "gender", isSortable: false },
   ];
 
   return (

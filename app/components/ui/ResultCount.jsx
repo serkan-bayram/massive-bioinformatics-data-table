@@ -9,7 +9,7 @@ export function ResultCount({ setFilters }) {
 
   return (
     <div className="flex items-center gap-2">
-      <label className="text-sm">Veri Sayısı</label>
+      <label className="text-sm">Result Count</label>
       <select
         onChange={handleChange}
         className="bg-background border flex-1 
