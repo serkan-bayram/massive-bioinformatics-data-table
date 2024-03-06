@@ -128,10 +128,15 @@ export async function POST(request) {
   // the whole data because there is not any filter
   if (requestBody === null) return Response.json(data);
 
-  let filteredArray = [];
+  let filteredArray = [...data];
   requestBody.forEach((r) => {
     if (r.count) {
-      filteredArray = data.slice(0, r.count);
+      filteredArray = filteredArray.slice(0, r.count);
+    }
+    if (r.search) {
+      filteredArray = filteredArray.filter((item) =>
+        item.name.toLowerCase().includes(r.search.toLowerCase())
+      );
     }
   });
 
