@@ -1,5 +1,4 @@
-// Convert balance strings to numeric values for sorting
-const numericBalance = (balance) => parseFloat(balance.replace(/[^\d.]/g, ""));
+import { byAge, byBalance, byCount, bySearch } from "@/app/utils/filter";
 
 export async function POST(request) {
   const data = [
@@ -129,43 +128,36 @@ export async function POST(request) {
 
   // If requestBody is null we can just return
   // the whole data because there is not any filter
-  if (requestBody === null) return Response.json(data);
+  if (requestBody === null) return Response.json({ data: data, error: null });
 
   let filteredArray = [...data];
-  // TODO: priorty on count?
-  requestBody.forEach((r) => {
-    if (r.count) {
-      filteredArray = filteredArray.slice(0, r.count);
-    }
-    if (r.search) {
-      filteredArray = filteredArray.filter((item) =>
-        item.name.toLowerCase().includes(r.search.toLowerCase())
-      );
-    }
 
-    // There should be only one sort option, balance or age
-    if (r.balance) {
-      if (r.balance === "asc") {
-        // Sort the data array by balance in ascending order
-        filteredArray.sort(
-          (a, b) => numericBalance(a.balance) - numericBalance(b.balance)
-        );
-      } else if (r.balance === "desc") {
-        filteredArray.sort(
-          (a, b) => numericBalance(b.balance) - numericBalance(a.balance)
-        );
-      }
-    }
+  const usedFilters = {};
 
-    if (r.age) {
-      if (r.age === "asc") {
-        // Sort the data array by age in ascending order
-        filteredArray.sort((a, b) => a.age - b.age);
-      } else if (r.age === "desc") {
-        filteredArray.sort((a, b) => b.age - a.age);
-      }
-    }
-  });
+  for (let i = 0; i < requestBody.length; i++) {
+    const filter = Object.keys(requestBody[i]);
+    usedFilters[filter] = requestBody[i][filter];
+  }
 
-  return Response.json(filteredArray);
+  // We can prioritize filters by order
+  if (usedFilters.hasOwnProperty("search")) {
+    filteredArray = bySearch(filteredArray, usedFilters.search);
+  }
+  if (usedFilters.hasOwnProperty("count")) {
+    filteredArray = byCount(filteredArray, usedFilters.count);
+  }
+  if (
+    usedFilters.hasOwnProperty("age") &&
+    usedFilters.hasOwnProperty("balance")
+  ) {
+    return Response.json({ data: filteredArray, error: "multipleSortOptions" });
+  }
+  if (usedFilters.hasOwnProperty("age")) {
+    byAge(filteredArray, usedFilters.age);
+  }
+  if (usedFilters.hasOwnProperty("balance")) {
+    byBalance(filteredArray, usedFilters.balance);
+  }
+
+  return Response.json({ data: filteredArray, error: null });
 }

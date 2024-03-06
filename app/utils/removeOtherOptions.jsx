@@ -2,7 +2,9 @@
 // Sort option, like Age or Balance
 // When one selected we remove others
 export function removeOtherOptions(params, columns, selectedColumn) {
-  columns.forEach((column) => {
+  const filterableColumns = columns.filter((column) => column.isSortable);
+
+  filterableColumns.forEach((column) => {
     if (column.id !== selectedColumn) {
       params.delete(column.id);
     }

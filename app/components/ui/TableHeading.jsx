@@ -22,7 +22,6 @@ export function TableHeading({ columns, column }) {
     }
 
     removeOtherOptions(params, filterableColumns, column.id);
-
     replace(`${pathname}?${params.toString()}`);
   };
 

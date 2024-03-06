@@ -27,7 +27,7 @@ export function Table({ initialData, searchParams }) {
             ))}
           </tr>
         </thead>
-        <TableBody searchParams={searchParams} initialData={initialData} />
+        <TableBody columns={columns} initialData={initialData} />
       </table>
     </div>
   );
