@@ -1,4 +1,4 @@
-export async function POST() {
+export async function POST(request) {
   const data = [
     {
       name: "Serkan",
@@ -121,6 +121,21 @@ export async function POST() {
       gender: "M",
     },
   ];
+
+  const requestBody = await request.json();
+
+  // If requestBody is null we can just return
+  // the whole data because there is not any filter (initialData)
+  if (requestBody === null) return Response.json(data);
+
+  let filteredArray = [];
+  requestBody.forEach((r) => {
+    if (r.count) {
+      filteredArray = data.slice(0, r.count);
+    }
+  });
+
+  if (filteredArray.length > 0) return Response.json(filteredArray);
 
   return Response.json(data);
 }

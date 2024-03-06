@@ -31,7 +31,7 @@ export function TableHeading({ column }) {
        w-fit p-2 rounded-md  transition-colors flex gap-2 items-center"
       >
         {column.name}
-        <i className="fa-solid fa-sort"></i>
+        <i aria-hidden className="fa-solid fa-sort"></i>
       </button>
     </th>
   ) : (

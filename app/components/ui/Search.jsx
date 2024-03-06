@@ -1,3 +1,5 @@
+"use client";
+
 export function Search({ setFilters }) {
   // Set filters by user input
   const handleChange = (e) => {

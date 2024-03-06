@@ -1,10 +1,18 @@
+"use client";
+
+import { useSetParams } from "@/app/utils/useSetParams";
+
 /* A component to control how many rows are shown in Table */
-export function ResultCount({ setFilters }) {
+export function ResultCount() {
+  const { params, replace, pathname } = useSetParams();
+
+  // This specifies how many options user will have
+  const resultOptions = [5, 10, 20, 30];
+
   const handleChange = (e) => {
-    setFilters((prevValues) => ({
-      ...prevValues,
-      resultCount: e.target.value,
-    }));
+    params.set("count", e.target.value);
+
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -19,10 +27,11 @@ export function ResultCount({ setFilters }) {
         name="resultCount"
         id="resultCount"
       >
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
+        {resultOptions.map((option, index) => (
+          <option key={index} value={`${option}`}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );

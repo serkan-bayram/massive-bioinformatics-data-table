@@ -1,7 +1,7 @@
-/* A component to show API data */
-
 import { TableHeading } from "./ui/TableHeading";
+import { TableBody } from "./ui/TableBody";
 
+/* A component to show API data */
 export function Table({ initialData }) {
   // Table headings
   // The order should match the initialData order
@@ -27,22 +27,7 @@ export function Table({ initialData }) {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {initialData.map((data, index) => (
-            <tr
-              className="border-b border-x
-               border-muted transition-colors
-               hover:bg-muted/50 last:border-b-0"
-              key={index}
-            >
-              {Object.entries(data).map(([key, value]) => (
-                <td className="px-4 p-4" key={key}>
-                  {value}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+        <TableBody initialData={initialData} />
       </table>
     </div>
   );
