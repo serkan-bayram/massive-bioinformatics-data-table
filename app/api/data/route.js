@@ -125,7 +125,7 @@ export async function POST(request) {
   const requestBody = await request.json();
 
   // If requestBody is null we can just return
-  // the whole data because there is not any filter (initialData)
+  // the whole data because there is not any filter
   if (requestBody === null) return Response.json(data);
 
   let filteredArray = [];

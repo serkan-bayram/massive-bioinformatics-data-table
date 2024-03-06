@@ -2,8 +2,8 @@ import { Table } from "@/app/components/Table";
 import { Filters } from "@/app/components/Filters";
 import { getData } from "./utils/getData";
 
-export default async function Home() {
-  const initialData = await getData();
+export default async function Home({ searchParams }) {
+  const initialData = await getData([searchParams]);
 
   return (
     <main

@@ -2,7 +2,7 @@ import { TableHeading } from "./ui/TableHeading";
 import { TableBody } from "./ui/TableBody";
 
 /* A component to show API data */
-export function Table({ initialData }) {
+export function Table({ initialData, searchParams }) {
   // Table headings
   // The order should match the initialData order
   const columns = [
@@ -27,7 +27,7 @@ export function Table({ initialData }) {
             ))}
           </tr>
         </thead>
-        <TableBody initialData={initialData} />
+        <TableBody searchParams={searchParams} initialData={initialData} />
       </table>
     </div>
   );
