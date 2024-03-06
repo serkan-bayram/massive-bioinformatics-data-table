@@ -1,11 +1,13 @@
 "use client";
 
+import { removeOtherOptions } from "@/app/utils/removeOtherOptions";
 import { useSetParams } from "@/app/utils/useSetParams";
 
 /* A component to create sortable and default columns */
-export function TableHeading({ column }) {
+export function TableHeading({ columns, column }) {
   const { replace, params, pathname } = useSetParams();
 
+  const filterableColumns = columns.filter((column) => column.isSortable);
   // We get relatable params with column.id
   // and set the new state according to old state
   const handleClick = () => {
@@ -18,6 +20,8 @@ export function TableHeading({ column }) {
     } else if (param === "desc") {
       params.set(column.id, "asc");
     }
+
+    removeOtherOptions(params, filterableColumns, column.id);
 
     replace(`${pathname}?${params.toString()}`);
   };

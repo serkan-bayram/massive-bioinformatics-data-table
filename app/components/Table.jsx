@@ -23,7 +23,7 @@ export function Table({ initialData, searchParams }) {
             {/* I have not used a proper key package
                   to keep bundle small for this project */}
             {columns.map((column, index) => (
-              <TableHeading key={index} column={column} />
+              <TableHeading columns={columns} key={index} column={column} />
             ))}
           </tr>
         </thead>
