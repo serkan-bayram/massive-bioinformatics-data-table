@@ -19,6 +19,17 @@ export function TableBody({ initialData }) {
 
   if (isPending) return <div>Loading...</div>;
 
+  if (filteredData.length === 0) {
+    return (
+      <div
+        className="absolute mt-8 left-1/2 
+      -translate-x-1/2 text-center"
+      >
+        No results has found
+      </div>
+    );
+  }
+
   // data is going to be filteredData if it is exists
   const data = filteredData || initialData;
 

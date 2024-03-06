@@ -129,6 +129,7 @@ export async function POST(request) {
   if (requestBody === null) return Response.json(data);
 
   let filteredArray = [...data];
+  // TODO: priorty on count?
   requestBody.forEach((r) => {
     if (r.count) {
       filteredArray = filteredArray.slice(0, r.count);
@@ -140,7 +141,5 @@ export async function POST(request) {
     }
   });
 
-  if (filteredArray.length > 0) return Response.json(filteredArray);
-
-  return Response.json(data);
+  return Response.json(filteredArray);
 }

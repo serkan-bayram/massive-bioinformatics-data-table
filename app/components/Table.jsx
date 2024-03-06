@@ -15,9 +15,9 @@ export function Table({ initialData, searchParams }) {
   return (
     <div
       className="rounded-md border border-x-0
-     border-muted w-full overflow-auto"
+     border-muted w-full overflow-auto "
     >
-      <table className="w-full">
+      <table className="w-full ">
         <thead className="bg-accent text-white">
           <tr className="border-b border-muted">
             {/* I have not used a proper key package
