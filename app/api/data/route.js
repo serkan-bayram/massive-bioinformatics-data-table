@@ -1,3 +1,6 @@
+// Convert balance strings to numeric values for sorting
+const numericBalance = (balance) => parseFloat(balance.replace(/[^\d.]/g, ""));
+
 export async function POST(request) {
   const data = [
     {
@@ -138,6 +141,29 @@ export async function POST(request) {
       filteredArray = filteredArray.filter((item) =>
         item.name.toLowerCase().includes(r.search.toLowerCase())
       );
+    }
+
+    // There should be only one sort option, balance or age
+    if (r.balance) {
+      if (r.balance === "asc") {
+        // Sort the data array by balance in ascending order
+        filteredArray.sort(
+          (a, b) => numericBalance(a.balance) - numericBalance(b.balance)
+        );
+      } else if (r.balance === "desc") {
+        filteredArray.sort(
+          (a, b) => numericBalance(b.balance) - numericBalance(a.balance)
+        );
+      }
+    }
+
+    if (r.age) {
+      if (r.age === "asc") {
+        // Sort the data array by age in ascending order
+        filteredArray.sort((a, b) => a.age - b.age);
+      } else if (r.age === "desc") {
+        filteredArray.sort((a, b) => b.age - a.age);
+      }
     }
   });
 
