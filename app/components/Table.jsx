@@ -1,8 +1,9 @@
 import { TableHeading } from "./ui/TableHeading";
 import { TableBody } from "./ui/TableBody";
+import { RemoveFilters } from "./ui/RemoveFilters";
 
 /* A component to show API data */
-export function Table({ initialData, searchParams }) {
+export function Table({ initialData }) {
   // Table headings
   // The order should match the initialData order
   const columns = [
@@ -29,6 +30,7 @@ export function Table({ initialData, searchParams }) {
         </thead>
         <TableBody columns={columns} initialData={initialData} />
       </table>
+      <RemoveFilters />
     </div>
   );
 }

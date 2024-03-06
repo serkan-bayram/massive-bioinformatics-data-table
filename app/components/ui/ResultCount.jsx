@@ -17,7 +17,7 @@ export function ResultCount() {
 
   return (
     <div className="flex items-center gap-2">
-      <label className="text-sm">Result Count</label>
+      <label className="text-sm text-center">Result Count</label>
       <select
         onChange={handleChange}
         className="bg-background border flex-1 

@@ -30,7 +30,7 @@ export function Search() {
       className="bg-background p-2 border 
       hover:ring-1 hover:ring-accent focus:ring-1
        focus:ring-accent focus:outline-none
-        border-muted rounded-md "
+        border-muted rounded-md min-w-[2rem] "
       placeholder="Search"
     />
   );

@@ -8,7 +8,7 @@ export default async function Home({ searchParams }) {
   return (
     <main
       className="flex min-h-screen flex-col 
-    items-center justify-between p-24 "
+    items-center justify-between lg:p-24 p-3 "
     >
       <div className="w-full">
         <Filters />

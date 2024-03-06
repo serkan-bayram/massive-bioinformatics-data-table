@@ -5,7 +5,7 @@ import { Search } from "./ui/Search";
 export function Filters() {
   return (
     <div>
-      <div className="my-2 flex  justify-between">
+      <div className="my-2 flex gap-4  justify-between">
         <Search />
         <ResultCount />
       </div>
