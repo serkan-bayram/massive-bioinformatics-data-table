@@ -28,12 +28,14 @@ export function TableBody({ columns, initialData }) {
 
   if (filteredData.data.length === 0) {
     return (
-      <div
+      <tbody
         className="absolute mt-8 left-1/2 
       -translate-x-1/2 text-center"
       >
-        No results has found
-      </div>
+        <tr>
+          <td>No results has found</td>
+        </tr>
+      </tbody>
     );
   }
 
